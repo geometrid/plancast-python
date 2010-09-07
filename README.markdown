@@ -2,6 +2,8 @@
 
 This is a premature Python wrapper for the [Plancast](http://plancast.com) API
 
+It is not recommended to be used in production, atleast until all the API methods have been written. 
+
 It is not fully complete, but I wanted a quick wrapper to play with some of the Plancast
 API and not have to worry about re-writing the usual auth and request code.
 
