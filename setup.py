@@ -1,10 +1,5 @@
 from distutils.core import setup
 
-try:
-    import simplejson
-except ImportError:
-    import json
-
 long_description = open('README.markdown').read()
 
 setup(

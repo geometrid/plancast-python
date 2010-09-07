@@ -2,11 +2,15 @@
 
 """ A simple Python wrapper around the Plancast api. """
 
-import pickle
 import base64
 import urllib
 import urllib2
-import json
+
+try:
+    import simplejson as json
+except ImportError:
+    import json
+
 
 class PlancastError(Exception):
     def __init__(self, data):
