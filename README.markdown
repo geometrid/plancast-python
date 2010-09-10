@@ -1,11 +1,9 @@
 # Plancast Python Wrapper
 
-This is a premature Python wrapper for the [Plancast](http://plancast.com) API
+This is a Python wrapper for the [Plancast](http://plancast.com) API
 
-It is not recommended to be used in production, atleast until all the API methods have been written. 
-
-It is not fully complete, but I wanted a quick wrapper to play with some of the Plancast
-API and not have to worry about re-writing the usual auth and request code.
+It has been tested, but lightly. I do my best to keep things up to date and working but if you
+happen to notice something please make me aware and I'll do my best to fix it quickly!
 
 # Usage
 
@@ -22,7 +20,13 @@ Search for plans in Toronto
 Discover friends from a social network linked to the authenticated user's Plancast account:
     plan.discover_friends({'service': 'twitter'})
 
-The plancast.py file has all the required parameters and options required for each implemeneted API call. More will
-come as I go through the Plancast API, but the current implementations should be working.
+Create a new plan:
+    plan.update({
+        'what': 'Drinks For Everyone',
+        'when': 'September 20th @ 7pm',
+        'where': 'The Rhino',
+    })
 
-Inspired by the Ruby version from [Wynn Netherland](http://github.com/pengwynn/plancast)
+The plancast.py file has all the required parameters and options required for each API call. 
+
+Inspired plenty by the Ruby version from [Wynn Netherland](http://github.com/pengwynn/plancast)
