@@ -14,10 +14,20 @@ except ImportError:
 
 class PlancastError(Exception):
     def __init__(self, data):
-        self.data = data
+        errors = {
+            401: UnauthorizedError,
+            403: RateLimitExceeded,
+            404: NotFound,
+            500: ServerError,
+        }
+        raise errors.get(data.code, UnknownError)(data)
 
-class UnauthorizedError(PlancastError):
-    pass
+class UnauthorizedError(Exception): pass
+class RateLimitExceeded(Exception): pass
+class NotFound(Exception): pass
+class ServerError(Exception): pass
+class UnknownError(Exception): pass
+
 
 class Plancast(object):
     def __init__(self, username=None, password=None, version="02", format=".json"):
@@ -253,7 +263,7 @@ class Plancast(object):
         @param: `plan_id` or `attendance_id` - Base 36 ID of plan or existing attendance for a plan.
         @example:
             plan.update_comment({
-                'comment': 'Hello, this is a cool.',
+                'content': 'Hello, this is a cool.',
                 'plan_id': '289a',
             })
         """
@@ -283,6 +293,6 @@ class Plancast(object):
         try:
             handle = json.loads(urllib2.urlopen(req).read())
         except urllib2.HTTPError, e:
-            raise Exception(e)
+            raise PlancastError(e)
 
         return handle
